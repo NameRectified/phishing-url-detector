@@ -14,6 +14,10 @@ model = joblib.load('best_model.joblib')
 class URLRequest(BaseModel):
     url: str
 
+@app.get("/")
+def home():
+    return {"message": "Phishing Detection API is running"}
+
 @app.post("/predict")
 def predict(request: URLRequest):
     features = extract_url_features(request.url)
@@ -28,6 +32,7 @@ def predict(request: URLRequest):
         "phishing_probability": round(float(probabilities[0]), 6),
         "legitimate_probability": round(float(probabilities[1]), 6),
     }
+
 
 
 if __name__ == "__main__":
