@@ -1,0 +1,16 @@
+[project]
+name = "midterm-project"
+version = "0.1.0"
+description = "Phishing URL detection using machine learning"
+readme = "README.md"
+authors = [
+    { name = "Balaji Mahendra" }
+]
+requires-python = ">=3.11,<3.12"
+dependencies = [
+    "fastapi>=0.162.0",
+    "joblib>=1.6.0",
+    "pandas>=3.1.0",
+    "scikit-learn>=1.9.1",
+    "uvicorn>=0.54.0",
+]
