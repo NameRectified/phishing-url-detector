@@ -176,3 +176,52 @@ http://localhost:9696/docs
 docker stop phishing-api
 docker rm phishing-api
 ```
+
+## Cloud Deployment
+
+The Phishing URL Detection API is deployed on Render.
+
+**Live API:** https://phishing-url-detector-v1o2.onrender.com
+
+**Interactive API Documentation:** https://phishing-url-detector-v1o2.onrender.com/docs
+
+### Using the Deployed API
+
+The API exposes a `POST /predict` endpoint that accepts a URL and returns its classification.
+
+**Endpoint:**
+
+```text
+POST https://phishing-url-detector-v1o2.onrender.com/predict
+```
+
+**Example request:**
+
+```bash
+curl -X POST "https://phishing-url-detector-v1o2.onrender.com/predict" \
+     -H "Content-Type: application/json" \
+     -d '{"url": "https://www.google.com"}'
+```
+
+**Request body:**
+
+```json
+{
+  "url": "https://www.google.com"
+}
+```
+
+The response contains:
+- `url`: The submitted URL.
+- `prediction`: The predicted class (`phishing` or `legitimate`).
+- `phishing_probability`: Model-estimated probability of the URL being phishing.
+- `legitimate_probability`: Model-estimated probability of the URL being legitimate.
+
+### Deployment Platform
+
+- **Platform:** Render
+- **Deployment method:** Docker
+- **Application framework:** FastAPI
+- **Server:** Uvicorn
+
+The application is containerized using the project's Dockerfile and deployed as a Render Web Service.
